@@ -20,12 +20,10 @@ Or install it yourself as:
 
 `require 'usno/imagery'`
 
-### USNO::Imagery
-
 #### USNO::Imagery::Earth
 
 The earth namespace will contain classes for viewing USNO's earth images.
-Currently there are three classes here, `Map`, `Sphere` ``
+Currently there are three classes here: `Map`, `Sphere`, `Rise`, and `Set`
 
 A view of the earth projected onto a 2D plane (at any given time):
 
