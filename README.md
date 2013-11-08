@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-`require 'usno/imagery'`
+Warning! This library will be changing a lot as I explore the nooks and crannies of USNO's imagery data services.
 
 #### USNO::Imagery::Earth
 
