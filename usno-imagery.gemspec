@@ -8,8 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = USNO::Imagery::VERSION
   spec.authors       = ["Ryan T. Hosford"]
   spec.email         = ["tad.hosford@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Consumes USNO's imagery data services}
+
+  spec.summary       = %q{Consumes USNO's imagery data services}
   spec.homepage      = ""
   spec.license       = "MIT"
 
