@@ -1,6 +1,6 @@
 # USNO::Imagery
 
-Consumes USNO's imagery data services
+Builds URLs for consuming USNO's imagery data services
 
 ## Installation
 
