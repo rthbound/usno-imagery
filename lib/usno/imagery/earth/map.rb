@@ -30,7 +30,7 @@ module USNO
         end
 
         def time
-          @time.utc.strftime("%H:%M")
+          @time.utc.strftime("%k:%M").lstrip
         end
       end
     end
