@@ -3,7 +3,7 @@ require 'pay_dirt'
 module USNO
   module Imagery
     module Earth
-      class Sphere < PayDirt::Base
+      class View < PayDirt::Base
         def initialize(options = {})
           options = {
             time:     Time.now,
@@ -13,7 +13,7 @@ module USNO
 
           # sets instance variables from key value pairs,
           # will fail if any keys given before options aren't in options
-          load_options(:time, :root_url, :resource, options)
+          load_options(:time, :root_url, :resource, :view, options) and validate_state
         end
 
         def call
@@ -22,7 +22,7 @@ module USNO
 
         private
         def query_for(resource)
-          "#{resource}?view=moon&date=#{date}&time=#{time}"
+          "#{ resource }?view=#{ @view }" + time
         end
 
         def date
@@ -30,7 +30,13 @@ module USNO
         end
 
         def time
-          @time.utc.strftime("%H:%M")
+          @time ? "&date=#{ date }&time=#{ @time.utc.strftime("%k:%M").lstrip }" : ""
+        end
+
+        def validate_state
+          ["full", "moon", "sun", "rise", "set"].include? @view or raise(
+            ":view not recognized - #{@view}"
+          )
         end
       end
     end

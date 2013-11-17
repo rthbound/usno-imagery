@@ -6,31 +6,20 @@ module USNO
       class Map < PayDirt::Base
         def initialize(options = {})
           options = {
-            time:     Time.now,
-            root_url: "http://api.usno.navy.mil/",
-            resource: self.class.name.downcase.split("::")[1..-2].join("/") + ".png"
+            view: "full",
+            usno_imagery_class: USNO::Imagery::Earth::View
           }.merge(options)
 
           # sets instance variables from key value pairs,
           # will fail if any keys given before options aren't in options
-          load_options(:time, :root_url, :resource, options)
+          load_options(:view, :usno_imagery_class, options)
         end
 
         def call
-          result(true, query_for(@root_url + @resource))
-        end
-
-        private
-        def query_for(resource)
-          "#{resource}?view=full&date=#{date}&time=#{time}"
-        end
-
-        def date
-          @time.utc.strftime("%m/%d/%Y")
-        end
-
-        def time
-          @time.utc.strftime("%k:%M").lstrip
+          result true, @usno_imagery_class.new({
+            view: @view,
+            time: @time || Time.now
+          }).call.data
         end
       end
     end

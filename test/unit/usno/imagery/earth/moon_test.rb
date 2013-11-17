@@ -1,10 +1,10 @@
 require 'test_helper'
 
-describe USNO::Imagery::Earth::Rise do
+describe USNO::Imagery::Earth::Moon do
   before do
-    @subject = USNO::Imagery::Earth::Rise
+    @subject = USNO::Imagery::Earth::Moon
     @params = {
-      view: "rise"
+      view: "moon",
     }
   end
 

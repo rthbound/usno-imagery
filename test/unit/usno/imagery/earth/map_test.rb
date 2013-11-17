@@ -4,7 +4,7 @@ describe USNO::Imagery::Earth::Map do
   before do
     @subject = USNO::Imagery::Earth::Map
     @params = {
-      time: Time.now,
+      view: "full"
     }
   end
 

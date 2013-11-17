@@ -18,32 +18,31 @@ Or install it yourself as:
 
 ## Usage
 
-Warning! This library will be changing a lot as I explore the nooks and crannies of USNO's imagery data services.
-
 #### USNO::Imagery::Earth
 
 The earth namespace will contain classes for viewing USNO's earth images.
-Currently there are three classes here: `Map`, `Sphere`, `Rise`, and `Set`
 
-A view of the earth projected onto a 2D plane (at any given time):
+```ruby
+# For an image of the entire earth (Mercator projection) with day / night
+USNO::Imagery::Earth::Map.new(time: Time.now).call.data
+  #=> "http://api.usno.navy.mil/imagery/earth.png?view=full&date=11/17/2013&time=1:11"
 
-    USNO::Imagery::Earth::Map.new(time: Time.now).call.data
-    #=> "http://api.usno.navy.mil/imagery/earth.png?view=full&date=11/08/2013&time=20:32"
+# For an image of the earth as seen from the sun
+USNO::Imagery::Earth::Sun.new(time: Time.now).call.data
+  #=> "http://api.usno.navy.mil/imagery/earth.png?view=sun&date=11/17/2013&time=1:13"
 
-A spherical view of the earth as seen from the moon (at any given time)
+# For an image of the earth as seen from the moon
+USNO::Imagery::Earth::Moon.new(time: Time.now).call.data
+  #=> "http://api.usno.navy.mil/imagery/earth.png?view=moon&date=11/17/2013&time=1:12"
 
-    USNO::Imagery::Earth::Sphere.new(time: Time.now).call.data
-    #=> "http://api.usno.navy.mil/imagery/earth.png?view=moon&date=11/08/2013&time=20:31"
+# For an image of the entire earth at sunrise
+USNO::Imagery::Earth::Rise.new.call.data
+  #=> "http://api.usno.navy.mil/imagery/earth.png?view=rise"
 
-A current view of the earth's sunrise
-
-    USNO::Imagery::Earth::Rise.new.call.data
-    => "http://api.usno.navy.mil/imagery/earth.png?view=rise"
-
-A current view of the earth's sunset
-
-    USNO::Imagery::Earth::Set.new.call.data
-    #=> "http://api.usno.navy.mil/imagery/earth.png?view=set"
+# For an image of the entire earth at sunset
+USNO::Imagery::Earth::Set.new.call.data
+  #=> "http://api.usno.navy.mil/imagery/earth.png?view=set"
+```
 
 ## Contributing
 

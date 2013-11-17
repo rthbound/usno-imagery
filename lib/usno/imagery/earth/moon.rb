@@ -3,10 +3,10 @@ require 'pay_dirt'
 module USNO
   module Imagery
     module Earth
-      class Rise < PayDirt::Base
+      class Moon < PayDirt::Base
         def initialize(options = {})
           options = {
-            view: "rise",
+            view: "moon",
             usno_imagery_class: USNO::Imagery::Earth::View
           }.merge(options)
 
@@ -18,7 +18,7 @@ module USNO
         def call
           result true, @usno_imagery_class.new({
             view: @view,
-            time: nil
+            time: @time || Time.now
           }).call.data
         end
       end
