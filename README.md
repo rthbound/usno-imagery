@@ -1,6 +1,8 @@
 # USNO::Imagery [![Code Climate](https://codeclimate.com/github/rthbound/usno-imagery.png)](https://codeclimate.com/github/rthbound/usno-imagery)[![Coverage Status](https://coveralls.io/repos/rthbound/usno-imagery/badge.png?branch=master)](https://coveralls.io/r/rthbound/usno-imagery?branch=master)[![Build Status](https://travis-ci.org/rthbound/usno-imagery.png?branch=master)](https://travis-ci.org/rthbound/usno-imagery)
 
-Builds URLs for consuming USNO's imagery data services
+Builds URLs for consuming USNO's imagery data services. Example:
+
+![Earth at sunrise](http://api.usno.navy.mil/imagery/earth.png?view=rise)
 
 ## Installation
 
