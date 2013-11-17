@@ -1,5 +1,7 @@
 require_relative "imagery/version"
 require_relative "imagery/earth/view"
+require_relative "imagery/earth/call"
+require_relative "imagery/earth/call_with_time"
 
 require_relative "imagery/earth/map"
 require_relative "imagery/earth/rise"
