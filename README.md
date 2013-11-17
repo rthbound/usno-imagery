@@ -1,4 +1,4 @@
-# USNO::Imagery
+# USNO::Imagery [![Code Climate](https://codeclimate.com/github/rthbound/usno-imagery.png)](https://codeclimate.com/github/rthbound/usno-imagery)
 
 Builds URLs for consuming USNO's imagery data services
 
