@@ -2,7 +2,7 @@
 
 Builds URLs for consuming USNO's imagery data services. Example:
 
-![Earth at sunrise](http://api.usno.navy.mil/imagery/earth.png?view=set)
+![Earth at sunrise](https://github.com/rthbound/usno-imagery/blob/master/samples/rise?raw=true)
 
 ## Installation
 
