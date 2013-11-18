@@ -1,6 +1,6 @@
 # USNO::Imagery [![Code Climate](https://codeclimate.com/github/rthbound/usno-imagery.png)](https://codeclimate.com/github/rthbound/usno-imagery)[![Coverage Status](https://coveralls.io/repos/rthbound/usno-imagery/badge.png?branch=master)](https://coveralls.io/r/rthbound/usno-imagery?branch=master)[![Build Status](https://travis-ci.org/rthbound/usno-imagery.png?branch=master)](https://travis-ci.org/rthbound/usno-imagery)
 
-Builds URLs for consuming USNO's imagery data services. Example:
+Builds URLs for consuming USNO's imagery data services. These services provide synthetic views of earth and other selected solar system bodies, e.g.
 
 ![Earth at sunrise](https://github.com/rthbound/usno-imagery/blob/master/samples/rise?raw=true)
 
@@ -25,70 +25,76 @@ Or install it yourself as:
 The earth namespace will contain classes for viewing USNO's earth images.
 
 ```ruby
-# For an image of the entire earth (Mercator projection) with day / night
+# Mercator projection showing day / night (at any given time)
 USNO::Imagery::Earth::Map.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/earth.png?view=full&date=11/17/2013&time=1:11"
 
-# For an image of the earth as seen from the sun
+# A spherical view of Earth as seen from the sun (at any given time)
 USNO::Imagery::Earth::Sun.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/earth.png?view=sun&date=11/17/2013&time=1:13"
 
-# For an image of the earth as seen from the moon
+# A spherical view of Earth as seen from the moon (at any given time)
 USNO::Imagery::Earth::Moon.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/earth.png?view=moon&date=11/17/2013&time=1:12"
 
-# For an image of the entire earth at sunrise
+# Earth at sunrise
 USNO::Imagery::Earth::Rise.new.call.data
   #=> "http://api.usno.navy.mil/imagery/earth.png?view=rise"
 
-# For an image of the entire earth at sunset
+# Earth at sunset
 USNO::Imagery::Earth::Set.new.call.data
   #=> "http://api.usno.navy.mil/imagery/earth.png?view=set"
 ```
 
-#### Other USNO::Imagery libraries
+#### Other celestial bodies
+
+Synthetic views of all celestial bodies can be fetched for any time between 1700 & 2100 A.D.
 
 ```ruby
-# For an image of our Moon at any time between 1700 & 2100 A.D.
+# Our Moon
 USNO::Imagery::Moon.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/moon.png?date=11/17/2013&time=1:13"
 
-# For an image of Mercury at any time between 1700 & 2100 A.D.
+# Mercury
 USNO::Imagery::Mercury.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/mercury.png?date=11/17/2013&time=1:13"
 
-# For an image of Venus at any time between 1700 & 2100 A.D.
+# Venus
 USNO::Imagery::Venus.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/venus.png?date=11/17/2013&time=1:13"
 
-# For a radar image of Venus at any time between 1700 & 2100 A.D.
+# For a radar image of Venus
 USNO::Imagery::Venus.new(time: Time.now, radar: true).call.data
   #=> "http://api.usno.navy.mil/imagery/venus-radar.png?date=11/17/2013&time=1:13"
 
-# For an image of Mars at any time between 1700 & 2100 A.D.
+# Mars
 USNO::Imagery::Mars.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/mars.png?date=11/17/2013&time=1:13"
 
-# For an image of Jupiter at any time between 1700 & 2100 A.D.
+# Jupiter
 USNO::Imagery::Jupiter.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/jupiter.png?date=11/17/2013&time=1:13"
 
-# For an image of Jupiter's moon Io at any time between 1700 & 2100 A.D.
+# Jupiter's moon Io
 USNO::Imagery::Io.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/io.png?date=11/17/2013&time=1:13"
 
-# For an image of Jupiter's moon Europa at any time between 1700 & 2100 A.D.
+# Jupiter's moon Europa
 USNO::Imagery::Europa.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/europa.png?date=11/17/2013&time=1:13"
 
-# For an image of Jupiter's moon Ganymede at any time between 1700 & 2100 A.D.
+# Jupiter's moon Ganymede
 USNO::Imagery::Ganymede.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/ganymede.png?date=11/17/2013&time=1:13"
 
-# For an image of Jupiter's moon Callisto at any time between 1700 & 2100 A.D.
+# Jupiter's moon Callisto
 USNO::Imagery::Callisto.new(time: Time.now).call.data
   #=> "http://api.usno.navy.mil/imagery/callisto.png?date=11/17/2013&time=1:13"
 ```
+
+## Other USNO libraries
+
+[usno-transit](http://github.com/rthbound/usno-transit) provides times of rise, set, and transit for major solar system bodies and selected bright stars. The output table also includes azimuth at rise and set as well as altitude at transit.
 
 ## Contributing
 

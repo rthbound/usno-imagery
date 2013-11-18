@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Consumes USNO's imagery data services}
 
   spec.summary       = %q{Consumes USNO's imagery data services}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/rthbound/usno-imagery"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -21,9 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "pry"
   spec.add_development_dependency "coveralls"
-  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "minitest"
-  spec.add_runtime_dependency "pay_dirt"
+  spec.add_runtime_dependency     "pay_dirt"
 end
