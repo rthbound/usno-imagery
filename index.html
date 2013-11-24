@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>usno-imagery by rthbound</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>usno-imagery</h1>
+        <p>Consumes the USNO's imagery data services</p>
+
+        <p class="view"><a href="https://github.com/rthbound/usno-imagery">View the Project on GitHub <small>rthbound/usno-imagery</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/rthbound/usno-imagery/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/rthbound/usno-imagery/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/rthbound/usno-imagery">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="usnoimagery-" class="anchor" href="#usnoimagery-"><span class="octicon octicon-link"></span></a>USNO::Imagery <a href="https://codeclimate.com/github/rthbound/usno-imagery"><img src="https://codeclimate.com/github/rthbound/usno-imagery.png" alt="Code Climate"></a><a href="https://coveralls.io/r/rthbound/usno-imagery?branch=master"><img src="https://coveralls.io/repos/rthbound/usno-imagery/badge.png?branch=master" alt="Coverage Status"></a><a href="https://travis-ci.org/rthbound/usno-imagery"><img src="https://travis-ci.org/rthbound/usno-imagery.png?branch=master" alt="Build Status"></a>
+</h1>
+
+<p>Builds URLs for consuming USNO's imagery data services. These services provide synthetic views of earth and other selected solar system bodies, e.g.</p>
+
+<p><img src="https://github.com/rthbound/usno-imagery/blob/master/samples/rise?raw=true" alt="Earth at sunrise"></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'usno-imagery'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install usno-imagery
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h4>
+<a name="usnoimageryearth" class="anchor" href="#usnoimageryearth"><span class="octicon octicon-link"></span></a>USNO::Imagery::Earth</h4>
+
+<p>The earth namespace will contain classes for viewing USNO's earth images.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Mercator projection showing day / night (at any given time)</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="ss">Earth</span><span class="p">:</span><span class="ss">:Map</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/earth.png?view=full&amp;date=11/17/2013&amp;time=1:11"</span>
+
+<span class="c1"># A spherical view of Earth as seen from the sun (at any given time)</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="ss">Earth</span><span class="p">:</span><span class="ss">:Sun</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/earth.png?view=sun&amp;date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># A spherical view of Earth as seen from the moon (at any given time)</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="ss">Earth</span><span class="p">:</span><span class="ss">:Moon</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/earth.png?view=moon&amp;date=11/17/2013&amp;time=1:12"</span>
+
+<span class="c1"># Earth at sunrise</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="ss">Earth</span><span class="p">:</span><span class="ss">:Rise</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/earth.png?view=rise"</span>
+
+<span class="c1"># Earth at sunset</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="ss">Earth</span><span class="p">:</span><span class="ss">:Set</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/earth.png?view=set"</span>
+</pre></div>
+
+<h4>
+<a name="other-celestial-bodies" class="anchor" href="#other-celestial-bodies"><span class="octicon octicon-link"></span></a>Other celestial bodies</h4>
+
+<p>Synthetic views of all celestial bodies can be fetched for any time between 1700 &amp; 2100 A.D.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="c1"># Our Moon</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Moon</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/moon.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Mercury</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Mercury</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/mercury.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Venus</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Venus</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/venus.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># For a radar image of Venus</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Venus</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">,</span> <span class="ss">radar</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/venus-radar.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Mars</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Mars</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/mars.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Jupiter</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Jupiter</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/jupiter.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Jupiter's moon Io</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Io</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/io.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Jupiter's moon Europa</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Europa</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/europa.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Jupiter's moon Ganymede</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Ganymede</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/ganymede.png?date=11/17/2013&amp;time=1:13"</span>
+
+<span class="c1"># Jupiter's moon Callisto</span>
+<span class="ss">USNO</span><span class="p">:</span><span class="ss">:Imagery</span><span class="o">::</span><span class="no">Callisto</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">time</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">data</span>
+  <span class="c1">#=&gt; "http://api.usno.navy.mil/imagery/callisto.png?date=11/17/2013&amp;time=1:13"</span>
+</pre></div>
+
+<h2>
+<a name="other-usno-libraries" class="anchor" href="#other-usno-libraries"><span class="octicon octicon-link"></span></a>Other USNO libraries</h2>
+
+<p><a href="http://github.com/rthbound/usno-transit">usno-transit</a> provides times of rise, set, and transit for major solar system bodies and selected bright stars. The output table also includes azimuth at rise and set as well as altitude at transit.</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/rthbound/usno-imagery/trend.png" alt="Bitdeli Badge"></a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/rthbound">rthbound</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-41441385-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
